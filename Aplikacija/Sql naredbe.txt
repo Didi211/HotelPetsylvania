@@ -1,0 +1,50 @@
+//Ovde su neke sql komande direktno kucane 
+u azure data studio kako bih u pocetku 
+imao neke komande.
+
+insert into ADMINISTRATOR values('admin','admin123');
+insert into KORISNIK values('admin','admin123','A',0);
+
+INSERT INTO USLUGA VALUES (1500,20,'JEDNOKRATNA','KUPANJE',GETDATE(),null,null,1,null,null);
+
+insert into radnik values ('Milan','Stevanovic','milanstev25','telefon','1234567890123',GETUTCDATE(),null,null,1);
+
+INSERT into MUSTERIJA values('Milica','Danilovic','micikasecer','mojleonajbolji',null);
+
+insert into KORISNIK values('milanstev25','telefon','R',0);
+insert into KORISNIK values('micikasecer','mojleonajbolji','M',0);
+
+insert into OBAVESTENJE VALUES('Dobrodosli u Hotel Petsylvania! Zakazite svom omiljenom ljubimcu neku od nasih 
+fenomenalnih usluga!',1,null,null,1);
+
+
+insert into PITANJE values ('Da li je u ponudi i trimovanje dlake?',null,GETDATE(),null,0,1,null);
+
+update PITANJE
+set TekstPitanja = 'Da li je u ponudi i trimovanje dlake?',
+    TekstOdgovora = 'Nije trenutno.',
+    DatumOdgovora = GETDATE(),
+    Odgovoreno = 1,
+    RadnikID = 1
+     where MusterijaID = 1 ;
+
+insert into ZAHTEV values (null,null,null,null,null,1);
+
+insert into ZAHTEV_USLUGA values(1,1,
+ (Select tip from USLUGA where UslugaID = 1),  GETDATE(),null,null);
+
+ update ZAHTEV
+ set Cena = ( select CenaUsluge from Usluga
+ where UslugaId =  (select UslugaID from ZAHTEV_USLUGA where ZahtevID = 1)),
+ Obradjen = 1,
+ RadnikID = 1;
+
+ insert into RECENZIJA values ('Prezadovoljna uslugom kupajna, pedantno odradjeno, preporuka za ovu ponudu!',5,GETDATE(),1);
+
+ insert into OBAVESTENJE values ('Kupanje vaseg ljubimca je zavrseno, molim Vas dodjite i pokupite ga.',0,1,1,null);
+
+ delete from RADNIK where RadnikID = 1;
+
+ update pitanje 
+ set RadnikID = 1;
+ INSERT INTO USLUGA VALUES (250,50,'BORAVAK','Boravak',GETDATE(),null,null,1,null,null);
